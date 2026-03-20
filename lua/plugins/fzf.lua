@@ -12,6 +12,13 @@ return {
 			vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep" })
 			vim.keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find buffers" })
 			vim.keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { desc = "Old files" })
+			vim.keymap.set("n", "<leader>fd", "<cmd>FzfLua diagnostics_document<cr>", { desc = "Find diagnostics" })
+			vim.keymap.set(
+				"n",
+				"<leader>fD",
+				"<cmd>FzfLua diagnostics_workspace<cr>",
+				{ desc = "Find workspace diagnostics" }
+			)
 			vim.keymap.set("n", "<leader>fh", "<cmd>FzfLua helptags<cr>", { desc = "Find help" })
 		end,
 	},
