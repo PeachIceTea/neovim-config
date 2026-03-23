@@ -12,10 +12,17 @@ return {
 					-- language servers
 					"lua-language-server",
 					"pyright",
+					"typescript-language-server",
+					"angular-language-server",
+					"emmet-language-server",
+					"css-lsp",
+					"jdtls",
+				"rust-analyzer",
 
 					-- formatters
 					"stylua",
 					"ruff",
+					"prettierd",
 				},
 			})
 		end,
@@ -23,7 +30,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"williambowers/mason.nvim",
+			"mason-org/mason.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"saghen/blink.cmp",
 		},
@@ -31,6 +38,11 @@ return {
 			local servers = {
 				"lua_ts",
 				"pyright",
+				"ts_ls",
+				"angularls",
+				"emmet_ls",
+				"cssls",
+				"rust_analyzer",
 			}
 
 			-- pass blink capabilities to all servers
@@ -88,6 +100,13 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					python = { "ruff_format", "ruff_organize_imports" },
+					javascript = { "prettierd" },
+					typescript = { "prettierd" },
+					javascriptreact = { "prettierd" },
+					typescriptreact = { "prettierd" },
+					html = { "prettierd" },
+					css = { "prettierd" },
+					json = { "prettierd" },
 				},
 				format_on_save = {
 					timeout_ms = 500,

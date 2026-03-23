@@ -1,0 +1,1 @@
+-- jdtls is configured in lua/plugins/java.lua
