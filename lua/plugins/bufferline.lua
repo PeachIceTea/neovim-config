@@ -8,6 +8,9 @@ return {
 		config = function()
 			require("bufferline").setup({
 				options = {
+					close_command = function(bufnr)
+						require("mini.bufremove").delete(bufnr, false)
+					end,
 					offsets = {
 						{
 							filetype = "neo-tree",

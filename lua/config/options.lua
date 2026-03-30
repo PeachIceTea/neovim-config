@@ -77,6 +77,18 @@ vim.o.confirm = true
 vim.o.wrap = true
 vim.o.linebreak = true -- break on word boundaries
 
+-- Clear statuscolumn in neo-tree to suppress line numbers.
+-- vim.schedule is needed because neo-tree resets window options after the
+-- FileType event fires, so we defer until the current event loop cycle finishes.
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "neo-tree",
+	callback = function()
+		vim.schedule(function()
+			vim.opt_local.statuscolumn = ""
+		end)
+	end,
+})
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
