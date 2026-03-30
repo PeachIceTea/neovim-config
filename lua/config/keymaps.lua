@@ -12,3 +12,9 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent and reselect" })
 vim.keymap.set("v", "<", "<gv", { desc = "Dedent and reselect" })
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+-- Vertical split (side by side)
+vim.keymap.set("n", "<leader>|", "<cmd>vsplit<cr>", { desc = "Split vertical" })
+
+-- Horizontal split (top and bottom)
+vim.keymap.set("n", "<leader>\\", "<cmd>split<cr>", { desc = "Split horizontal" })
