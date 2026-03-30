@@ -8,6 +8,9 @@ return {
 			require("fzf-lua").setup({
 				lsp = {
 					jump_to_single_result = true,
+					actions = {
+						["default"] = require("fzf-lua.actions").file_edit,
+					},
 				},
 			})
 
