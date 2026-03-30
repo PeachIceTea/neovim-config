@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Number of spaces a tab counts for
+vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
@@ -10,7 +11,7 @@ vim.o.shiftwidth = 4
 vim.o.number = true
 vim.o.relativenumber = true
 -- Align numbers to the right, hide virtual lines.
-vim.opt.statuscolumn = "%=%{v:virtnum?'':v:relnum?v:relnum:v:lnum} "
+vim.opt.statuscolumn = "%s%=%{v:virtnum?'':v:relnum?v:relnum:v:lnum} "
 vim.opt.fillchars = { eob = " " }
 
 -- highlights current line.
