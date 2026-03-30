@@ -5,7 +5,11 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
-			require("fzf-lua").setup({})
+			require("fzf-lua").setup({
+				lsp = {
+					jump_to_single_result = true,
+				},
+			})
 
 			vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find files" })
 			vim.keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })

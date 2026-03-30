@@ -17,7 +17,8 @@ return {
 					"emmet-language-server",
 					"css-lsp",
 					"jdtls",
-				"rust-analyzer",
+					"rust-analyzer",
+					"tailwindcss-language-server",
 
 					-- formatters
 					"stylua",
@@ -43,6 +44,7 @@ return {
 				"emmet_ls",
 				"cssls",
 				"rust_analyzer",
+				"tailwindcss",
 			}
 
 			-- pass blink capabilities to all servers
@@ -51,6 +53,35 @@ return {
 			})
 
 			-- server-specific overrides
+			vim.lsp.config("rust_analyzer", {
+				settings = {
+					["rust-analyzer"] = {
+						check = {
+							command = "clippy",
+						},
+					},
+				},
+			})
+
+			vim.lsp.config("tailwindcss", {
+				filetypes = {
+					"html",
+					"css",
+					"javascript",
+					"typescript",
+					"javascriptreact",
+					"typescriptreact",
+					"rust",
+				},
+				settings = {
+					tailwindCSS = {
+						includeLanguages = {
+							rust = "html",
+						},
+					},
+				},
+			})
+
 			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
@@ -79,10 +110,10 @@ return {
 						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
 					end
 
-					map("gd", vim.lsp.buf.definition, "Go to definition")
-					map("gD", vim.lsp.buf.declaration, "Go to declaration")
-					map("gr", vim.lsp.buf.references, "Go to references")
-					map("gi", vim.lsp.buf.implementation, "Go to implementation")
+					map("gd", "<cmd>FzfLua lsp_definitions<cr>", "Go to definition")
+					map("gD", "<cmd>FzfLua lsp_declarations<cr>", "Go to declaration")
+					map("gr", "<cmd>FzfLua lsp_references<cr>", "Go to references")
+					map("gi", "<cmd>FzfLua lsp_implementations<cr>", "Go to implementation")
 					map("K", vim.lsp.buf.hover, "Hover documentation")
 					map("<leader>lr", vim.lsp.buf.rename, "Rename symbol")
 					map("<leader>la", vim.lsp.buf.code_action, "Code action")
@@ -107,6 +138,7 @@ return {
 					html = { "prettierd" },
 					css = { "prettierd" },
 					json = { "prettierd" },
+					rust = { "rustfmt" },
 				},
 				format_on_save = {
 					timeout_ms = 500,
