@@ -122,6 +122,29 @@ return {
 					map("[d", vim.diagnostic.goto_prev, "Previous diagnostic")
 				end,
 			})
+
+			-- Restart pyright when package manifests are saved (picks up newly installed packages)
+			vim.api.nvim_create_autocmd("BufWritePost", {
+				pattern = { "requirements*.txt", "pyproject.toml", "setup.py", "setup.cfg" },
+				callback = function()
+					vim.cmd("LspRestart pyright")
+				end,
+			})
+
+			-- Notify pyright when a new Python file is opened (picks up new modules)
+			vim.api.nvim_create_autocmd("BufAdd", {
+				pattern = "*.py",
+				callback = function(event)
+					local clients = vim.lsp.get_clients({ name = "pyright" })
+					for _, client in ipairs(clients) do
+						client.notify("workspace/didChangeWatchedFiles", {
+							changes = {
+								{ uri = vim.uri_from_fname(event.file), type = 1 },
+							},
+						})
+					end
+				end,
+			})
 		end,
 	},
 	{
