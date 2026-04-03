@@ -66,6 +66,7 @@ return {
 			vim.lsp.config("tailwindcss", {
 				filetypes = {
 					"html",
+					"htmlangular",
 					"css",
 					"javascript",
 					"typescript",
@@ -159,6 +160,7 @@ return {
 					javascriptreact = { "prettierd" },
 					typescriptreact = { "prettierd" },
 					html = { "prettierd" },
+					htmlangular = { "prettierd" },
 					css = { "prettierd" },
 					json = { "prettierd" },
 					rust = { "rustfmt" },
