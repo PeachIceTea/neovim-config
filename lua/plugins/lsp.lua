@@ -41,7 +41,7 @@ return {
 				"pyright",
 				"ts_ls",
 				"angularls",
-				"emmet_ls",
+				"emmet_language_server",
 				"cssls",
 				"rust_analyzer",
 				"tailwindcss",

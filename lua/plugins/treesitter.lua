@@ -1,5 +1,10 @@
 return {
 	{
+		"windwp/nvim-ts-autotag",
+		lazy = false,
+		opts = {},
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
 		build = ":TSUpdate",
@@ -12,6 +17,7 @@ return {
 				"java",
 				"lua",
 				"gleam",
+				"html",
 			})
 
 			vim.api.nvim_create_autocmd("FileType", {
