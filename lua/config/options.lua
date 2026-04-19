@@ -89,6 +89,21 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Auto-reload files changed on disk (e.g. by an external agent).
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+	callback = function()
+		if vim.fn.mode() ~= "c" then
+			local buftype = vim.bo.buftype
+			if buftype == "" then
+				vim.cmd("checktime")
+			elseif buftype == "acwrite" and vim.bo.filetype == "oil" then
+				require("oil").discard_all_changes()
+			end
+		end
+	end,
+})
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()

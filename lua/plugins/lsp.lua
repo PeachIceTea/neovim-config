@@ -79,6 +79,12 @@ return {
 						includeLanguages = {
 							rust = "html",
 						},
+						experimental = {
+							classRegex = {
+								[=[class:\s*["']([^"']*)["']]=],
+								[=[class:\s*`([^`]*)`]=],
+							},
+						},
 					},
 				},
 			})
