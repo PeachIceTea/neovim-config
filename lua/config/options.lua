@@ -93,13 +93,8 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
 	callback = function()
-		if vim.fn.mode() ~= "c" then
-			local buftype = vim.bo.buftype
-			if buftype == "" then
-				vim.cmd("checktime")
-			elseif buftype == "acwrite" and vim.bo.filetype == "oil" then
-				require("oil").discard_all_changes()
-			end
+		if vim.fn.mode() ~= "c" and vim.bo.buftype == "" then
+			vim.cmd("checktime")
 		end
 	end,
 })
