@@ -171,15 +171,22 @@ return {
 					json = { "prettierd" },
 					rust = { "rustfmt" },
 				},
-				format_on_save = {
-					timeout_ms = 500,
-					lsp_fallback = true,
-				},
+				format_on_save = function(bufnr)
+					if vim.b[bufnr].disable_autoformat then
+						return
+					end
+					return { timeout_ms = 500, lsp_fallback = true }
+				end,
 			})
 
 			vim.keymap.set("n", "<leader>bf", function()
 				require("conform").format({ async = true })
 			end, { desc = "Format buffer" })
+
+			vim.keymap.set("n", "<leader>bF", function()
+				vim.b.disable_autoformat = not vim.b.disable_autoformat
+				vim.notify("Format on save: " .. (vim.b.disable_autoformat and "disabled" or "enabled"))
+			end, { desc = "Toggle format on save (buffer)" })
 		end,
 	},
 }

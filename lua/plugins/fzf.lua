@@ -27,6 +27,20 @@ return {
 				{ desc = "Find workspace diagnostics" }
 			)
 			vim.keymap.set("n", "<leader>fh", "<cmd>FzfLua helptags<cr>", { desc = "Find help" })
+			vim.keymap.set("n", "<leader>fe", function()
+				local fzf_lua = require("fzf-lua")
+				opts = {
+					prompt = "Oil> ",
+					actions = {
+						["default"] = function(selected)
+							if selected[1] then
+								require("oil").open(selected[1])
+							end
+						end,
+					},
+				}
+				fzf_lua.fzf_exec("fd --type d", opts)
+			end, { desc = "Open directory in Oil" })
 		end,
 	},
 }
