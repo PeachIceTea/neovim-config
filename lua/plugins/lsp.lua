@@ -19,11 +19,13 @@ return {
 					"jdtls",
 					"rust-analyzer",
 					"tailwindcss-language-server",
+					"clangd",
 
 					-- formatters
 					"stylua",
 					"ruff",
 					"prettierd",
+					"clang-format",
 				},
 			})
 		end,
@@ -45,6 +47,7 @@ return {
 				"cssls",
 				"rust_analyzer",
 				"tailwindcss",
+				"clangd",
 			}
 
 			-- pass blink capabilities to all servers
@@ -169,7 +172,10 @@ return {
 					htmlangular = { "prettierd" },
 					css = { "prettierd" },
 					json = { "prettierd" },
+					markdown = { "prettierd" },
 					rust = { "rustfmt" },
+					c = { "clang_format" },
+					cpp = { "clang_format" },
 				},
 				format_on_save = function(bufnr)
 					if vim.b[bufnr].disable_autoformat then
