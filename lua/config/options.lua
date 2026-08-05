@@ -77,6 +77,15 @@ vim.o.confirm = true
 vim.o.wrap = true
 vim.o.linebreak = true -- break on word boundaries
 
+-- Check spelling automatically in prose-oriented buffers.
+vim.opt.spelllang = { "en_us" }
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "gitcommit", "markdown", "text" },
+	callback = function()
+		vim.opt_local.spell = true
+	end,
+})
+
 -- Clear statuscolumn in neo-tree to suppress line numbers.
 -- vim.schedule is needed because neo-tree resets window options after the
 -- FileType event fires, so we defer until the current event loop cycle finishes.

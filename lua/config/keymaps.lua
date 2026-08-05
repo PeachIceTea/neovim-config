@@ -3,6 +3,11 @@ vim.keymap.set("n", "<ESC>", "<cmd>nohlsearch<CR>", { desc = "Exit search" })
 vim.keymap.set("n", "<leader>w", "<cmd>write<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>q", "<cmd>quit<CR>", { desc = "Quit window" })
 
+vim.keymap.set("n", "<leader>bs", function()
+	vim.opt_local.spell = not vim.opt_local.spell:get()
+	vim.notify("Spell checking " .. (vim.opt_local.spell:get() and "on" or "off"))
+end, { desc = "Toggle spell checking" })
+
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
