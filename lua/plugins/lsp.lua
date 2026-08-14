@@ -20,6 +20,7 @@ return {
 					"rust-analyzer",
 					"tailwindcss-language-server",
 					"clangd",
+					"eslint-lsp",
 
 					-- formatters
 					"stylua",
@@ -39,9 +40,10 @@ return {
 		},
 		config = function()
 			local servers = {
-				"lua_ts",
+				"lua_ls",
 				"pyright",
 				"ts_ls",
+				"eslint",
 				"angularls",
 				"emmet_language_server",
 				"cssls",
@@ -82,6 +84,7 @@ return {
 						includeLanguages = {
 							rust = "html",
 						},
+						classFunctions = { "tw", "clsx" },
 						experimental = {
 							classRegex = {
 								[=[class:\s*["']([^"']*)["']]=],
