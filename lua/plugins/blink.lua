@@ -3,6 +3,7 @@ return {
 		"saghen/blink.cmp",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
+			"ribru17/blink-cmp-spell",
 		},
 		version = "1.*",
 		opts = {
@@ -20,7 +21,16 @@ return {
 				},
 			},
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
+				default = { "lsp", "path", "snippets", "buffer", "spell" },
+				providers = {
+					spell = {
+						name = "Spell",
+						module = "blink-cmp-spell",
+						enabled = function()
+							return vim.wo.spell
+						end,
+					},
+				},
 			},
 			fuzzy = {
 				implementation = "prefer_rust_with_warning",
