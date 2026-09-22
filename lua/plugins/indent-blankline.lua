@@ -15,8 +15,12 @@ return {
 		},
 	},
 	config = function(_, opts)
-		vim.api.nvim_set_hl(0, "ibl_indent", { fg = "#928374" })
-		vim.api.nvim_set_hl(0, "ibl_scope", { fg = "#fe8019" })
+		local function define_hl()
+			vim.api.nvim_set_hl(0, "ibl_indent", { fg = "#928374" })
+			vim.api.nvim_set_hl(0, "ibl_scope", { fg = "#fe8019" })
+		end
+		define_hl()
+		vim.api.nvim_create_autocmd("ColorScheme", { callback = define_hl })
 		require("ibl").setup(opts)
 	end,
 }
