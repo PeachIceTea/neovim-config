@@ -29,7 +29,7 @@ return {
 			vim.keymap.set("n", "<leader>fh", "<cmd>FzfLua helptags<cr>", { desc = "Find help" })
 			vim.keymap.set("n", "<leader>fe", function()
 				local fzf_lua = require("fzf-lua")
-				opts = {
+				local opts = {
 					prompt = "Oil> ",
 					actions = {
 						["default"] = function(selected)
